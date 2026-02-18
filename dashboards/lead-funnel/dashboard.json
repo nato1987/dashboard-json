@@ -1,0 +1,871 @@
+{
+
+"company": ,
+
+"departament": ,
+
+  "cards": [
+
+    {
+
+      "id": "total-interacoes",
+
+      "emoji": "👥",
+
+      "query": "SELECT COUNT(*) as valor FROM user_variables WHERE bot_id=403 AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}'",
+
+      "valor": "810",
+
+      "cardId": "total-interacoes",
+
+      "colEnd": 7,
+
+      "rowEnd": 2,
+
+      "titulo": "            Total de Interações",
+
+      "estilos": {
+
+        "titleColor": "#6a1b9a",
+
+        "valueColor": "#1976d2",
+
+        "backgroundColor": "#ffffff"
+
+      },
+
+      "formato": "inteiro",
+
+      "colStart": 1,
+
+      "rowStart": 1,
+
+      "elementoId": "total-interacoes",
+
+      "valorBruto": 810,
+
+      "tipoCalculo": "contagem",
+
+      "colunasCalculo": [
+
+        "total"
+
+      ]
+
+    },
+
+    {
+
+      "id": "nomes-preenchidos",
+
+      "emoji": "📝",
+
+      "query": "SELECT COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='nome' AND user_variable_key_value IS NOT NULL AND user_variable_key_value != '' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}'",
+
+      "valor": "131",
+
+      "cardId": "nomes-preenchidos",
+
+      "colEnd": 3,
+
+      "rowEnd": 3,
+
+      "titulo": "            Nomes Preenchidos",
+
+      "estilos": {
+
+        "titleColor": "#6a1b9a",
+
+        "valueColor": "#1976d2",
+
+        "backgroundColor": "#ffffff"
+
+      },
+
+      "formato": "inteiro",
+
+      "colStart": 1,
+
+      "rowStart": 2,
+
+      "elementoId": "nomes-preenchidos",
+
+      "valorBruto": 131,
+
+      "tipoCalculo": "contagem",
+
+      "colunasCalculo": [
+
+        "nome"
+
+      ]
+
+    },
+
+    {
+
+      "id": "leads-email",
+
+      "emoji": "📧",
+
+      "query": "SELECT COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='email' AND user_variable_key_value IS NOT NULL AND user_variable_key_value != '' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}'",
+
+      "valor": "56",
+
+      "cardId": "leads-email",
+
+      "colEnd": 5,
+
+      "rowEnd": 3,
+
+      "titulo": "            Leads (com e-mail)",
+
+      "estilos": {
+
+        "titleColor": "#6a1b9a",
+
+        "valueColor": "#1976d2",
+
+        "backgroundColor": "#ffffff"
+
+      },
+
+      "formato": "inteiro",
+
+      "colStart": 3,
+
+      "rowStart": 2,
+
+      "elementoId": "leads-email",
+
+      "valorBruto": 56,
+
+      "tipoCalculo": "contagem",
+
+      "colunasCalculo": [
+
+        "email"
+
+      ]
+
+    },
+
+    {
+
+      "id": "taxa-conversao-email",
+
+      "emoji": "🎯",
+
+      "query": "SELECT ROUND((SELECT COUNT(DISTINCT user_id) FROM user_variables WHERE bot_id=403 AND user_variable_key_name='email' AND user_variable_key_value IS NOT NULL AND user_variable_key_value != '' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}') * 100.0 / (SELECT COUNT(DISTINCT user_id) FROM user_variables WHERE bot_id=403 AND user_variable_key_name='nome' AND user_variable_key_value IS NOT NULL AND user_variable_key_value != '' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}'), 2) as valor",
+
+      "valor": "42.75%",
+
+      "cardId": "taxa-conversao-email",
+
+      "colEnd": 7,
+
+      "rowEnd": 3,
+
+      "titulo": "            Taxa de Conversão (e-mail)",
+
+      "estilos": {
+
+        "titleColor": "#6a1b9a",
+
+        "valueColor": "#1976d2",
+
+        "backgroundColor": "#ffffff"
+
+      },
+
+      "formato": "percentual",
+
+      "colStart": 5,
+
+      "rowStart": 2,
+
+      "elementoId": "taxa-conversao-email",
+
+      "valorBruto": 42.75,
+
+      "tipoCalculo": "percentual",
+
+      "colunasCalculo": [
+
+        "email",
+
+        "nome"
+
+      ]
+
+    }
+
+  ],
+
+  "sessoes": [
+
+    {
+
+      "titulo1": "📊 Funil de Captura de Leads",
+
+      "titulo2": "Jornada do Lead",
+
+      "graficos": [
+
+        {
+
+          "data": {
+
+            "labels": [
+
+              "Iniciaram Conversa",
+
+              "Preencheram Nome",
+
+              "Preencheram Telefone",
+
+              "Preencheram E-mail (Lead)"
+
+            ],
+
+            "datasets": [
+
+              {
+
+                "data": [
+
+                  271,
+
+                  131,
+
+                  67,
+
+                  56
+
+                ],
+
+                "label": "Usuários",
+
+                "backgroundColor": [
+
+                  "#68387c",
+
+                  "#49437e",
+
+                  "#2b58a4",
+
+                  "#1976d2"
+
+                ]
+
+              }
+
+            ]
+
+          },
+
+          "type": "bar",
+
+          "cores": [
+
+            "#68387c",
+
+            "#49437e",
+
+            "#2b58a4",
+
+            "#1976d2"
+
+          ],
+
+          "query": "SELECT 'Iniciaram Conversa' as label, COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='inicio_de_jornada' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}' UNION ALL SELECT 'Preencheram Nome' as label, COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='nome' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}' UNION ALL SELECT 'Preencheram Telefone' as label, COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='telefone' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}' UNION ALL SELECT 'Preencheram E-mail (Lead)' as label, COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='email' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}'",
+
+          "colEnd": 7,
+
+          "rowEnd": 2,
+
+          "titulo": "Funil de Captura",
+
+          "chartId": "funnelChart",
+
+          "colStart": 1,
+
+          "rowStart": 1,
+
+          "labelDataset": "Usuários",
+
+          "barOrientation": "horizontal",
+
+          "campoAgrupamento": "etapa",
+
+          "useDetailsStructure": false
+
+        }
+
+      ],
+
+      "descricao": "Acompanhe a jornada do usuário, desde o início da interação até se tornar um lead qualificado."
+
+    },
+
+    {
+
+      "titulo1": "🎯 Análise de Leads",
+
+      "titulo2": "Perfil dos Leads",
+
+      "graficos": [
+
+        {
+
+          "data": {
+
+            "labels": [
+
+              "Não tenho",
+
+              "Já tenho"
+
+            ],
+
+            "datasets": [
+
+              {
+
+                "data": [
+
+                  39,
+
+                  13
+
+                ],
+
+                "label": "Leads",
+
+                "borderColor": "rgba(255, 255, 255, 1)",
+
+                "borderWidth": 1,
+
+                "backgroundColor": [
+
+                  "#6a1b9a",
+
+                  "#1976d2"
+
+                ]
+
+              }
+
+            ]
+
+          },
+
+          "type": "pie",
+
+          "cores": [
+
+            "#6a1b9a",
+
+            "#1976d2",
+
+            "#9e9e9e"
+
+          ],
+
+          "query": "SELECT CASE WHEN user_variable_key_value IS NULL OR user_variable_key_value = '' THEN 'Não informado' ELSE user_variable_key_value END as label, COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='tem_orcamento' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}' GROUP BY CASE WHEN user_variable_key_value IS NULL OR user_variable_key_value = '' THEN 'Não informado' ELSE user_variable_key_value END ORDER BY valor DESC",
+
+          "colEnd": 4,
+
+          "rowEnd": 3,
+
+          "titulo": "Leads por \"Já Possui Orçamento?\"",
+
+          "chartId": "budgetChart",
+
+          "colStart": 1,
+
+          "rowStart": 1,
+
+          "labelDataset": "Leads",
+
+          "barOrientation": "vertical",
+
+          "campoAgrupamento": "orcamento",
+
+          "useDetailsStructure": false
+
+        },
+
+        {
+
+          "data": {
+
+            "labels": [
+
+              "Não",
+
+              "Sim"
+
+            ],
+
+            "datasets": [
+
+              {
+
+                "data": [
+
+                  43,
+
+                  8
+
+                ],
+
+                "label": "Leads",
+
+                "borderColor": "rgba(255, 255, 255, 1)",
+
+                "borderWidth": 1,
+
+                "backgroundColor": [
+
+                  "#6a1b9a",
+
+                  "#a4484a"
+
+                ]
+
+              }
+
+            ]
+
+          },
+
+          "type": "doughnut",
+
+          "cores": [
+
+            "#6a1b9a",
+
+            "#a4484a",
+
+            "#9e9e9e"
+
+          ],
+
+          "query": "SELECT CASE WHEN user_variable_key_value IS NULL OR user_variable_key_value = '' THEN 'Não informado' ELSE user_variable_key_value END as label, COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='possui_av' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}' GROUP BY CASE WHEN user_variable_key_value IS NULL OR user_variable_key_value = '' THEN 'Não informado' ELSE user_variable_key_value END ORDER BY valor DESC",
+
+          "colEnd": 7,
+
+          "cutout": "50%",
+
+          "rowEnd": 3,
+
+          "titulo": "Leads por \"Possui Assistente Virtual?\"",
+
+          "chartId": "avChart",
+
+          "colStart": 4,
+
+          "rowStart": 1,
+
+          "labelDataset": "Leads",
+
+          "barOrientation": "vertical",
+
+          "campoAgrupamento": "assistente",
+
+          "useDetailsStructure": false
+
+        }
+
+      ],
+
+      "descricao": "Entenda as características e necessidades dos leads que preencheram seus dados de contato."
+
+    },
+
+    {
+
+      "titulo1": "📈 Comportamento do Usuário",
+
+      "titulo2": "Padrões de Interação",
+
+      "graficos": [
+
+        {
+
+          "data": {
+
+            "labels": [
+
+              "00h",
+
+              "01h",
+
+              "02h",
+
+              "03h",
+
+              "04h",
+
+              "05h",
+
+              "06h",
+
+              "07h",
+
+              "08h",
+
+              "09h",
+
+              "10h",
+
+              "11h",
+
+              "12h",
+
+              "13h",
+
+              "14h",
+
+              "15h",
+
+              "16h",
+
+              "17h",
+
+              "18h",
+
+              "19h",
+
+              "20h",
+
+              "21h",
+
+              "22h",
+
+              "23h"
+
+            ],
+
+            "datasets": [
+
+              {
+
+                "data": [
+
+                  39,
+
+                  10,
+
+                  5,
+
+                  1,
+
+                  2,
+
+                  5,
+
+                  19,
+
+                  27,
+
+                  44,
+
+                  42,
+
+                  40,
+
+                  58,
+
+                  52,
+
+                  44,
+
+                  55,
+
+                  57,
+
+                  41,
+
+                  55,
+
+                  7,
+
+                  24,
+
+                  57,
+
+                  24,
+
+                  45,
+
+                  57
+
+                ],
+
+                "fill": true,
+
+                "label": "Interações",
+
+                "tension": 0.3,
+
+                "borderColor": "#ff9800",
+
+                "borderWidth": 2,
+
+                "backgroundColor": "rgba(255, 152, 0, 0.2)"
+
+              }
+
+            ]
+
+          },
+
+          "type": "line",
+
+          "query": "SELECT CONCAT(LPAD(HOUR(user_variable_date_insert), 2, '0'), 'h') as label, COUNT(*) as valor FROM user_variables WHERE bot_id=403 AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}' GROUP BY HOUR(user_variable_date_insert) ORDER BY HOUR(user_variable_date_insert)",
+
+          "colEnd": 4,
+
+          "rowEnd": 2,
+
+          "titulo": "Pico de Interações (Todos)",
+
+          "chartId": "allInteractionsTimeChart",
+
+          "tension": 0.3,
+
+          "colStart": 1,
+
+          "corBorda": "#ff9800",
+
+          "corFundo": "rgba(255, 152, 0, 0.2)",
+
+          "rowStart": 1,
+
+          "labelDataset": "Interações",
+
+          "barOrientation": "vertical",
+
+          "campoAgrupamento": "hora",
+
+          "useDetailsStructure": false
+
+        },
+
+        {
+
+          "data": {
+
+            "labels": [
+
+              "00h",
+
+              "01h",
+
+              "06h",
+
+              "07h",
+
+              "08h",
+
+              "09h",
+
+              "10h",
+
+              "11h",
+
+              "12h",
+
+              "13h",
+
+              "14h",
+
+              "15h",
+
+              "16h",
+
+              "17h",
+
+              "18h",
+
+              "19h",
+
+              "20h",
+
+              "21h",
+
+              "22h",
+
+              "23h"
+
+            ],
+
+            "datasets": [
+
+              {
+
+                "data": [
+
+                  2,
+
+                  1,
+
+                  2,
+
+                  3,
+
+                  4,
+
+                  1,
+
+                  2,
+
+                  3,
+
+                  4,
+
+                  3,
+
+                  4,
+
+                  5,
+
+                  3,
+
+                  4,
+
+                  1,
+
+                  1,
+
+                  5,
+
+                  1,
+
+                  3,
+
+                  5
+
+                ],
+
+                "fill": true,
+
+                "label": "Leads Capturados",
+
+                "tension": 0.3,
+
+                "borderColor": "#1976d2",
+
+                "borderWidth": 2,
+
+                "backgroundColor": "rgba(25, 118, 210, 0.2)"
+
+              }
+
+            ]
+
+          },
+
+          "type": "line",
+
+          "cores": [
+
+            "#ce601e"
+
+          ],
+
+          "query": "SELECT CONCAT(LPAD(HOUR(user_variable_date_insert), 2, '0'), 'h') as label, COUNT(DISTINCT user_id) as valor FROM user_variables WHERE bot_id=403 AND user_variable_key_name='email' AND user_variable_date_insert >= '${startDate}' AND user_variable_date_insert <= '${endDate}' GROUP BY HOUR(user_variable_date_insert) ORDER BY HOUR(user_variable_date_insert)",
+
+          "colEnd": 7,
+
+          "rowEnd": 2,
+
+          "titulo": "Pico de Leads Capturados",
+
+          "chartId": "leadsTimeChart",
+
+          "tension": 0.3,
+
+          "colStart": 4,
+
+          "corBorda": "#1976d2",
+
+          "corFundo": "rgba(25, 118, 210, 0.2)",
+
+          "rowStart": 1,
+
+          "labelDataset": "Leads Capturados",
+
+          "barOrientation": "vertical",
+
+          "campoAgrupamento": "hora",
+
+          "useDetailsStructure": false
+
+        }
+
+      ],
+
+      "descricao": "Analise e compare quando os usuários mais interagem versus quando os leads são efetivamente capturados."
+
+    }
+
+  ],
+
+  "cardsConfig": {
+
+    "titleColor": "#6a1b9a",
+
+    "subtitleColor": "#1976d2",
+
+    "backgroundColor": "#ffffff"
+
+  },
+
+  "sessoesConfig": {
+
+    "titleColor": "#6a1b9a",
+
+    "subtitleColor": "#1976d2",
+
+    "backgroundColor": [
+
+      "#ffffff"
+
+    ],
+
+    "descriptionColor": "#666666"
+
+  },
+
+  "classificacaoConfig": {
+
+    "limites": [
+
+      10,
+
+      25,
+
+      50
+
+    ],
+
+    "categorias": [
+
+      "Baixo Engajamento",
+
+      "Engajamento Moderado",
+
+      "Alto Engajamento",
+
+      "Engajamento Excepcional"
+
+    ]
+
+  }
+
+}CTRL + X
+wc -l dashboards/lead-funnel/dashboard.json
+
